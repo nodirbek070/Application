@@ -125,5 +125,7 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
-    ]
+    ], 
+    "DEFALT_PAGINATION_CLASS":"rest_framework.paginatoin.PageNumberPagination",
+    "PAGE_SIZE":1,
 }
