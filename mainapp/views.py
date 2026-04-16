@@ -11,12 +11,12 @@ from .models import Application, Worker, Category
 """ Pagionation class """
 class our_pagination(pagination.PageNumberPagination):
     """  """
-    page_size = 3
+    page_size = 12
     page_size_query_param = 'page_size'
-    max_page_size = 1000
+    max_page_size = 10000
 
 class ApplicationViewSet(viewsets.ModelViewSet):
-    queryset = Application.objects.filter(status='qabul_qilingan')
+    queryset = Application.objects.all()
     serializer_class = Application_Serializer
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -24,6 +24,6 @@ class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = Category_Serializer
 
 class WorkerViewSet(viewsets.ModelViewSet):
-    queryset = Worker.objects.all()
+    queryset = Worker.objects.filter(status=True)
     serializer_class = Worker_Serializer
     pagination_class = our_pagination

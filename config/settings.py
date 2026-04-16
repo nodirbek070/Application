@@ -127,5 +127,5 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
     ], 
     "DEFALT_PAGINATION_CLASS":"rest_framework.paginatoin.PageNumberPagination",
-    "PAGE_SIZE":1,
+    "PAGE_SIZE":10,
 }
