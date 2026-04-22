@@ -131,8 +131,8 @@ REST_FRAMEWORK = {
     "PAGE_SIZE":10,
     },
     'DEFAULT_THROTTLE_RATES': {
-        'burst': '60/min',
-        'sustained': '1000/day'
+        'anon': '5/minute',
+        'user': '10/minute',
     },
         'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.ScopedRateThrottle',
