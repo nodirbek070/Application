@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainapp',
     "rest_framework",
+    'drf_yasg',
     
 ]
 
@@ -129,21 +130,18 @@ REST_FRAMEWORK = {
             'rest_framework.throttling.AnonRateThrottle',
             'rest_framework.throttling.UserRateThrottle',
         ],
-        
-        'DEFAULT_THROTTLE_RATES': {
-        'anon': '30/day',
-        'user': '1000/day',
-        },
-    
-
 
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '50/minute',
+        'anon': '20/minute',
         'user': '1000/day',
         'example': '100/minute'
     },
 
-    "DEFALT_PAGINATION_CLASS":"rest_framework.paginatoin.PageNumberPagination",
+    "DEFAULT_PAGINATION_CLASS":"rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE":20,
+    
+        'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+        ]
 }
 
