@@ -24,21 +24,22 @@ class Category(models.Model):
         return self.name
     
 class Application(models.Model):
+
     """  """
     name = models.CharField(max_length=50, verbose_name="Nomi", unique=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, 
-                                blank=True, related_name="applications")
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name="applications")
     body = models.TextField(verbose_name="Batafsil")
-    photo = models.ImageField(upload_to='photos/', null=True, blank=True)
-    video = models.FileField(upload_to='videos/', null=True, blank=True)
+    photo = models.ImageField(upload_to='photos/' )
+    video = models.FileField(upload_to='videos/')
     applicant = models.CharField(max_length=40, verbose_name="Arizachi")
     phone1 = models.CharField(max_length=13, validators=[PHONE_REGEX], verbose_name="Tel. raqam 1") # regex
-    phone2 = models.CharField(max_length=13, validators=[PHONE_REGEX], verbose_name="Tel. raqam 2", 
-                              null=True, blank=True) # regex
+    phone2 = models.CharField(max_length=13, validators=[PHONE_REGEX], verbose_name="Tel. raqam 2", null=True, blank=True) # regex
     
-    status = models.CharField(max_length=50, choices=APPLICATION_STATUS, 
-                              default="qabul_qilingan")
+    status = models.CharField(max_length=50, choices=APPLICATION_STATUS, default="qabul_qilingan")
     created_on = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        ordering = ['-created_on']
+
     
     def __str__(self):
         return self.name
@@ -50,9 +51,13 @@ class Worker(models.Model):
     photo = models.ImageField(upload_to='worker_photo/')
     stage = models.CharField(max_length=100, verbose_name="Lavozim")
     phone1 = models.CharField(max_length=13, validators=[PHONE_REGEX], verbose_name="Tel. raqam 1") # regex
-    phone2 = models.CharField(max_length=13, validators=[PHONE_REGEX], verbose_name="Tel. raqam 2", 
-                              null=True, blank=True) # regex
+    phone2 = models.CharField(max_length=13, validators=[PHONE_REGEX], verbose_name="Tel. raqam 2", null=True, blank=True) # regex
     
     status = models.BooleanField(default=True)
+    def __str__(self):
+        return self.full_name
+
+
 
 ("Nodirbek2011")
+

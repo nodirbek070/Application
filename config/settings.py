@@ -118,23 +118,32 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR /'media'
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
     ],    
         'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.AnonRateThrottle',
-        'rest_framework.throttling.UserRateThrottle',
-    ],
+            'rest_framework.throttling.AnonRateThrottle',
+            'rest_framework.throttling.UserRateThrottle',
+        ],
+        
+        'DEFAULT_THROTTLE_RATES': {
+        'anon': '30/day',
+        'user': '1000/day',
+        },
     
-    "DEFALT_PAGINATION_CLASS":"rest_framework.paginatoin.PageNumberPagination",
-    "PAGE_SIZE":10,
+
 
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '5/minute',
+        'anon': '50/minute',
         'user': '1000/day',
-        'example': '10/minute'
+        'example': '100/minute'
     },
+
+    "DEFALT_PAGINATION_CLASS":"rest_framework.paginatoin.PageNumberPagination",
+    "PAGE_SIZE":20,
 }
+

@@ -9,7 +9,7 @@ from  .models import Category, Application, Worker
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', "status")
-    list_filter = ('status', )
+    list_filter = ("name", 'status')
 
 @admin.register(Application)
 class ApplicationAdmin(admin.ModelAdmin):

@@ -13,6 +13,12 @@ class our_pagination(pagination.PageNumberPagination):
     page_size_query_param = 'page_size'
     max_page_size = 10000
 
+class our_pagination1(pagination.PageNumberPagination):
+    """  """
+    page_size = 20
+    page_size_query_param = 'page_size'
+    max_page_size = 10000
+
     """ Throttling """
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 class User_throttle(AnonRateThrottle):
@@ -21,6 +27,7 @@ class User_throttle(AnonRateThrottle):
 class ApplicationViewSet(viewsets.ModelViewSet):
     queryset = Application.objects.all()
     serializer_class = Application_Serializer
+    pagination_class = our_pagination1
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.filter(status=True)
@@ -31,3 +38,4 @@ class WorkerViewSet(viewsets.ModelViewSet):
     serializer_class = Worker_Serializer
     pagination_class = our_pagination
     throttle_classes = [User_throttle,]
+
