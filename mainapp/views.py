@@ -35,6 +35,8 @@ class ApplicationViewSet(viewsets.ModelViewSet):
     throttle_classes = [User_throttle,]
 
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['category', 'applicant']
 
     # filterset_fields = ['category', 'applicant']  
     
@@ -50,4 +52,5 @@ class WorkerViewSet(viewsets.ModelViewSet):
     serializer_class = Worker_Serializer
     pagination_class = our_pagination
     throttle_classes = [User_throttle,]
+
 
